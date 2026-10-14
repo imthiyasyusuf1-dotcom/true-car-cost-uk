@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://imthiyasyusuf1-dotcom.github.io/true-car-cost-uk/sitemap.xml
