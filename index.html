@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>True Car Cost UK | What a car really costs you each month</title>
+<meta name="description" content="Free UK calculator. Put in the car price, finance, insurance, fuel and your salary and see what the car really costs you each month, per mile and as a share of your take home pay.">
+<meta property="og:title" content="What will this car actually cost me?">
+<meta property="og:description" content="Finance, insurance, fuel, tax, MOT, servicing and depreciation in one number. Free UK car cost calculator.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d8ff3e'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%230d0f12'%3E%C2%A3%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0d0f12;--panel:#15181d;--panel2:#1b1f26;--line:#262b34;--text:#eef0f3;--muted:#8b93a1;
+  --accent:#d8ff3e;--accent-ink:#0d0f12;--warn:#ffb03e;--bad:#ff5a5a;--good:#3ee08f;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font:15px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 85% -10%,rgba(216,255,62,.10),transparent 60%),radial-gradient(700px 400px at -10% 30%,rgba(62,224,143,.06),transparent 60%)}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 60px;position:relative}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:34px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:17px}
+.logo i{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-style:normal;font-weight:900}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 11px}
+h1{font-size:clamp(32px,5.4vw,58px);line-height:1.02;letter-spacing:-.035em;font-weight:850;max-width:820px}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{color:var(--muted);font-size:17px;max-width:620px;margin:16px 0 30px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.card h2 b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--panel2);color:var(--accent);font-size:12px;border:1px solid var(--line)}
+.section+.section{margin-top:22px;padding-top:22px;border-top:1px dashed var(--line)}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.fields.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:560px){.fields,.fields.three{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.inp{position:relative}
+.inp span{position:absolute;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
+.inp .pre{left:12px}.inp .suf{right:12px}
+input[type=number],select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:11px;padding:11px 12px;font:inherit;font-size:15.5px;font-weight:600;outline:none;transition:border-color .15s;-moz-appearance:textfield;appearance:none}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.inp.p input{padding-left:26px}.inp.s input{padding-right:46px}
+input:focus,select:focus{border-color:var(--accent)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;margin-bottom:14px}
+.seg button{background:none;border:0;color:var(--muted);font:inherit;font-weight:700;padding:9px;border-radius:9px;cursor:pointer}
+.seg button.on{background:var(--accent);color:var(--accent-ink)}
+.hint{font-size:12px;color:var(--muted);margin-top:10px}
+.hide{display:none!important}
+.sticky{position:sticky;top:18px}
+.big{font-size:clamp(46px,7vw,64px);font-weight:900;letter-spacing:-.045em;line-height:1}
+.big small{font-size:18px;color:var(--muted);font-weight:600;letter-spacing:0;margin-left:4px}
+.sub{color:var(--muted);margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:12px}
+.kpi div{font-size:11.5px;color:var(--muted)}
+.kpi strong{font-size:19px;letter-spacing:-.02em}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--panel2);margin:6px 0 14px}
+.bar i{display:block;height:100%}
+.rows{list-style:none}
+.rows li{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rows li:last-child{border-bottom:0}
+.rows li span{display:flex;align-items:center;gap:9px;color:#c7ccd4}
+.rows li span:before{content:"";width:9px;height:9px;border-radius:3px;background:var(--c)}
+.rows li b{font-variant-numeric:tabular-nums}
+.verdict{margin-top:16px;border-radius:13px;padding:14px 15px;font-size:14px;border:1px solid}
+.verdict strong{display:block;font-size:15px;margin-bottom:3px}
+.v-good{background:rgba(62,224,143,.08);border-color:rgba(62,224,143,.35)}
+.v-ok{background:rgba(255,176,62,.08);border-color:rgba(255,176,62,.35)}
+.v-bad{background:rgba(255,90,90,.08);border-color:rgba(255,90,90,.35)}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.btn{flex:1;min-width:140px;text-align:center;border-radius:12px;padding:12px 14px;font-weight:750;text-decoration:none;font-size:14px;cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);font-family:inherit}
+.btn.main{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media(max-width:900px){.tips{grid-template-columns:1fr}}
+.tip h3{font-size:16px;letter-spacing:-.01em;margin-bottom:6px}
+.tip p{color:var(--muted);font-size:14px}
+.tip a{color:var(--accent);font-weight:700;text-decoration:none;font-size:14px;display:inline-block;margin-top:10px}
+.faq{margin-top:22px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:700;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";float:right;color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq p{color:var(--muted);margin-top:8px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--accent);color:var(--accent-ink);font-weight:800;padding:10px 16px;border-radius:99px;transition:transform .25s}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><i>£</i>True Car Cost</div>
+    <div class="tag">Free · UK · No sign up</div>
+  </header>
+
+  <h1>The price on the advert is <em>not</em> what the car costs you.</h1>
+  <p class="lede">Put in the finance, insurance, fuel and the boring bits nobody mentions. See the real monthly number and what share of your take home pay it eats before you sign anything.</p>
+
+  <div class="grid">
+    <div class="card" id="form">
+      <div class="section">
+        <h2><b>1</b>The car and how you're paying</h2>
+        <div class="seg" id="mode">
+          <button data-m="pcp" class="on">PCP</button>
+          <button data-m="hp">HP</button>
+          <button data-m="cash">Cash</button>
+        </div>
+        <div class="fields">
+          <div><label>Car price</label><div class="inp p"><span class="pre">£</span><input type="number" id="price" value="16000" min="0" step="250"></div></div>
+          <div class="fin"><label>Deposit</label><div class="inp p"><span class="pre">£</span><input type="number" id="deposit" value="2000" min="0" step="100"></div></div>
+          <div class="fin"><label>APR</label><div class="inp s"><span class="suf">%</span><input type="number" id="apr" value="9.9" min="0" step="0.1"></div></div>
+          <div class="fin"><label>Term</label><select id="term"><option value="24">24 months</option><option value="36">36 months</option><option value="48" selected>48 months</option><option value="60">60 months</option></select></div>
+          <div class="pcp-only"><label>Balloon payment (GFV)</label><div class="inp p"><span class="pre">£</span><input type="number" id="balloon" value="6500" min="0" step="100"></div></div>
+          <div class="dep"><label>Value lost per year</label><div class="inp s"><span class="suf">%</span><input type="number" id="dep" value="15" min="0" step="1"></div></div>
+        </div>
+        <p class="hint" id="modeHint">PCP: the balloon is what you'd pay at the end to keep it. Depreciation is already baked into the monthly, so we don't count it twice.</p>
+      </div>
+
+      <div class="section">
+        <h2><b>2</b>Running costs</h2>
+        <div class="fields three">
+          <div><label>Miles a year</label><div class="inp"><input type="number" id="miles" value="8000" min="0" step="500"></div></div>
+          <div><label>MPG</label><div class="inp"><input type="number" id="mpg" value="45" min="1" step="1"></div></div>
+          <div><label>Fuel price</label><div class="inp s"><span class="suf">p/l</span><input type="number" id="ppl" value="138" min="0" step="1"></div></div>
+          <div><label>Insurance a year</label><div class="inp p"><span class="pre">£</span><input type="number" id="ins" value="900" min="0" step="25"></div></div>
+          <div><label>Road tax a year</label><div class="inp p"><span class="pre">£</span><input type="number" id="ved" value="195" min="0" step="5"></div></div>
+          <div><label>Service + MOT</label><div class="inp p"><span class="pre">£</span><input type="number" id="service" value="300" min="0" step="10"></div></div>
+          <div><label>Tyres + repairs</label><div class="inp p"><span class="pre">£</span><input type="number" id="repairs" value="250" min="0" step="10"></div></div>
+          <div><label>Parking a month</label><div class="inp p"><span class="pre">£</span><input type="number" id="parking" value="20" min="0" step="5"></div></div>
+          <div><label>Breakdown cover</label><div class="inp p"><span class="pre">£</span><input type="number" id="breakdown" value="60" min="0" step="5"></div></div>
+        </div>
+        <p class="hint">Yearly figures unless it says a month. Electric? Tweak MPG or fuel price until the fuel line matches what you'd roughly spend on charging.</p>
+      </div>
+
+      <div class="section">
+        <h2><b>3</b>Your pay (optional)</h2>
+        <div class="fields">
+          <div><label>Salary before tax</label><div class="inp p"><span class="pre">£</span><input type="number" id="salary" value="28000" min="0" step="500"></div></div>
+          <div><label>Student loan</label><select id="sl"><option value="0">None</option><option value="2">Plan 2 (England/Wales 2012 to 2023)</option><option value="5">Plan 5 (started 2023 onwards)</option><option value="1">Plan 1</option></select></div>
+        </div>
+        <p class="hint">We work out rough take home pay using 2026/27 England rates (no pension). Close enough to tell you if the car is a bad idea.</p>
+      </div>
+    </div>
+
+    <div class="sticky">
+      <div class="card">
+        <h2>Real monthly cost</h2>
+        <div class="big" id="monthly">£0<small>/month</small></div>
+        <div class="sub" id="subline"></div>
+        <div class="kpis">
+          <div class="kpi"><div>Per year</div><strong id="yearly">£0</strong></div>
+          <div class="kpi"><div>Per mile</div><strong id="permile">0p</strong></div>
+          <div class="kpi"><div>Of take home</div><strong id="share">0%</strong></div>
+        </div>
+        <div class="bar" id="bar"></div>
+        <ul class="rows" id="rows"></ul>
+        <div class="verdict" id="verdict"></div>
+        <div class="actions">
+          <button class="btn main" id="share-btn">Copy link to this setup</button>
+          <button class="btn" id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tips">
+    <div class="card tip">
+      <h3>Insurance is usually the biggest lever</h3>
+      <p>Same car, same driver, quotes can be hundreds apart. Buying about three weeks before renewal tends to come out cheaper than leaving it to the last day.</p>
+      <a href="https://www.moneysavingexpert.com/insurance/cheap-car-insurance/" target="_blank" rel="noopener">Cheap car insurance tips →</a>
+    </div>
+    <div class="card tip">
+      <h3>Check the car before you fall for it</h3>
+      <p>Free MOT history shows mileage readings and every advisory. If the miles jump around or the same fault keeps coming up, walk away.</p>
+      <a href="https://www.gov.uk/check-mot-history" target="_blank" rel="noopener">Check MOT history free →</a>
+    </div>
+    <div class="card tip">
+      <h3>Know your road tax before buying</h3>
+      <p>Cars with a list price over £40,000 pay the expensive car supplement for years 2 to 6. That can turn a cheap looking deal into a costly one.</p>
+      <a href="https://www.gov.uk/vehicle-tax-rate-tables" target="_blank" rel="noopener">Road tax rates →</a>
+    </div>
+  </div>
+
+  <div class="card faq">
+    <h2>Quick answers</h2>
+    <details><summary>How much of my pay should a car take?</summary><p>A common rule of thumb is keeping all car costs under about 15% of take home pay. Under 10% is comfortable. Over 20% and the car starts running your life.</p></details>
+    <details><summary>PCP or HP?</summary><p>PCP gives lower monthly payments because you're only paying off the drop in value, but you don't own the car unless you pay the balloon. HP costs more a month but the car is yours at the end. If you plan to keep the car for years, HP usually works out cheaper overall.</p></details>
+    <details><summary>Why count depreciation if I paid cash?</summary><p>Because it's real money. A £16k car that's worth £10k after three years cost you £6k just by sitting on your drive. Ignoring it makes cash buying look cheaper than it is.</p></details>
+    <details><summary>Is my data saved anywhere?</summary><p>No. Everything runs in your browser. The share link just stores the numbers in the address so you can send it to someone.</p></details>
+  </div>
+
+  <footer>Rough guide, not financial advice. Figures are estimates based on what you enter.<br>Made in London.</footer>
+</div>
+<div class="toast" id="toast">Link copied</div>
+
+<script>
+// Note: innerHTML below only ever receives numbers we format ourselves and fixed labels, never raw user text.
+const $=id=>document.getElementById(id);
+const ids=["price","deposit","apr","term","balloon","dep","miles","mpg","ppl","ins","ved","service","repairs","parking","breakdown","salary","sl"];
+const defaults={};ids.forEach(i=>defaults[i]=$(i).value);
+let mode="pcp";
+const gbp=(n,d=0)=>"£"+Math.round(n).toLocaleString("en-GB",{maximumFractionDigits:d});
+const v=id=>Math.max(0,parseFloat($(id).value)||0);
+
+function takeHome(s,plan){
+  if(!s)return 0;
+  let pa=12570; if(s>100000) pa=Math.max(0,pa-(s-100000)/2);
+  const taxable=Math.max(0,s-pa);
+  const basic=Math.min(taxable,37700), higher=Math.min(Math.max(0,taxable-37700),125140-37700), add=Math.max(0,taxable-125140);
+  const tax=basic*.2+higher*.4+add*.45;
+  const ni=Math.max(0,Math.min(s,50270)-12570)*.08+Math.max(0,s-50270)*.02;
+  const th={"1":26900,"2":29385,"5":25000}[plan];
+  const sl=th?Math.max(0,s-th)*.09:0;
+  return s-tax-ni-sl;
+}
+
+function calc(){
+  const price=v("price"),deposit=Math.min(v("deposit"),price),apr=v("apr")/100,n=+$("term").value,balloon=v("balloon"),depr=v("dep")/100;
+  const r=Math.pow(1+apr,1/12)-1, P=price-deposit;
+  let finance=0,depreciation=0,interest=0,depositMonthly=0;
+  if(mode==="cash"){
+    depreciation=price*depr/12;
+  }else{
+    const B=mode==="pcp"?Math.min(balloon,P):0;
+    const pv=P-B/Math.pow(1+r,n);
+    finance=r>0?pv*r/(1-Math.pow(1+r,-n)):pv/n;
+    interest=finance*n+B-P;
+    depositMonthly=deposit/n;
+  }
+  const miles=v("miles"),litres=miles/Math.max(1,v("mpg"))*4.54609,fuel=litres*v("ppl")/100/12;
+  const items=[
+    ["Finance payment",finance,"#d8ff3e"],
+    ["Deposit spread over term",depositMonthly,"#a6c92c"],
+    ["Value lost (depreciation)",depreciation,"#9c7cff"],
+    ["Fuel",fuel,"#3ee08f"],
+    ["Insurance",v("ins")/12,"#3eb8ff"],
+    ["Road tax",v("ved")/12,"#ff8a3e"],
+    ["Service and MOT",v("service")/12,"#ffb03e"],
+    ["Tyres and repairs",v("repairs")/12,"#ff5a8a"],
+    ["Parking",v("parking"),"#c7ccd4"],
+    ["Breakdown cover",v("breakdown")/12,"#6b7380"]
+  ].filter(x=>x[1]>0.005);
+  const total=items.reduce((a,x)=>a+x[1],0);
+  $("monthly").innerHTML=gbp(total)+"<small>/month</small>";
+  $("yearly").textContent=gbp(total*12);
+  $("permile").textContent=miles?Math.round(total*12/miles*100)+"p":"n/a";
+  const th=takeHome(v("salary"),$("sl").value)/12;
+  const share=th?total/th*100:0;
+  $("share").textContent=th?share.toFixed(0)+"%":"n/a";
+  let sub = mode==="cash"?"Paying cash, with depreciation counted as a real cost.":
+    `Finance is ${gbp(finance)} a month. Total interest over ${n} months: ${gbp(Math.max(0,interest))}.`;
+  if(mode==="pcp"&&balloon>0) sub+=` Keep it at the end? That's another ${gbp(Math.min(balloon,P))}.`;
+  $("subline").textContent=sub;
+  $("bar").innerHTML=items.map(x=>`<i style="width:${x[1]/total*100}%;background:${x[2]}"></i>`).join("");
+  $("rows").innerHTML=items.sort((a,b)=>b[1]-a[1]).map(x=>`<li style="--c:${x[2]}"><span>${x[0]}</span><b>${gbp(x[1])}</b></li>`).join("");
+  const vd=$("verdict");
+  if(!th){vd.className="verdict";vd.innerHTML="<strong>Add your salary</strong>to see if this car is affordable for you.";}
+  else if(share<10){vd.className="verdict v-good";vd.innerHTML=`<strong>Comfortable</strong>About ${share.toFixed(0)}% of your roughly ${gbp(th)} monthly take home. Leaves plenty for everything else.`;}
+  else if(share<=15){vd.className="verdict v-ok";vd.innerHTML=`<strong>Doable, but tight-ish</strong>About ${share.toFixed(0)}% of your roughly ${gbp(th)} take home. Fine if rent is cheap. Shop around on insurance before you commit.`;}
+  else{vd.className="verdict v-bad";vd.innerHTML=`<strong>This car will run your life</strong>About ${share.toFixed(0)}% of your roughly ${gbp(th)} take home. Look at a cheaper car, a bigger deposit or a longer think. ${gbp(total-th*.15)} a month over the 15% line.`;}
+  const q=new URLSearchParams();ids.forEach(i=>{if($(i).value!==defaults[i])q.set(i,$(i).value)});if(mode!=="pcp")q.set("m",mode);
+  history.replaceState(null,"",location.pathname+(q.toString()?"?"+q:""));
+}
+function setMode(m){
+  mode=m;document.querySelectorAll("#mode button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));
+  document.querySelectorAll(".fin").forEach(e=>e.classList.toggle("hide",m==="cash"));
+  document.querySelectorAll(".pcp-only").forEach(e=>e.classList.toggle("hide",m!=="pcp"));
+  document.querySelectorAll(".dep").forEach(e=>e.classList.toggle("hide",m!=="cash"));
+  $("modeHint").textContent={pcp:"PCP: the balloon is what you'd pay at the end to keep it. Depreciation is already baked into the monthly, so we don't count it twice.",hp:"HP: higher monthly payments, but the car is yours once the last one goes out. We count the payments as your cost while you're paying.",cash:"Cash: no monthly payment, but the car loses value every year. We count that loss as a cost, because it is one."}[m];
+  calc();
+}
+document.querySelectorAll("#mode button").forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ids.forEach(i=>$(i).addEventListener("input",calc));
+$("share-btn").onclick=async()=>{try{await navigator.clipboard.writeText(location.href)}catch(e){}const t=$("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)};
+$("reset").onclick=()=>{ids.forEach(i=>$(i).value=defaults[i]);setMode("pcp")};
+const q=new URLSearchParams(location.search);ids.forEach(i=>{if(q.has(i))$(i).value=q.get(i)});
+setMode(["pcp","hp","cash"].includes(q.get("m"))?q.get("m"):"pcp");
+</script>
+</body>
+</html>
