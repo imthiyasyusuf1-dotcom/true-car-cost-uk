@@ -50,6 +50,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .cards a span{color:var(--muted);font-size:14.5px}
 footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer nav{margin-bottom:10px}
+.cform label{display:block;font-size:14px;color:var(--muted);margin:14px 0 4px}
+.cform input,.cform select,.cform textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;padding:10px 12px}
+.cform button{border:0;cursor:pointer;font:inherit;font-weight:800;margin-top:16px}
 </style>
 </head>
 <body>
@@ -61,9 +64,24 @@ footer nav{margin-bottom:10px}
 
 
 <p class="lede">Found a figure that looks wrong, or want something added to the calculator? We would like to hear about it.</p>
-<div class="box"><strong>Send a message</strong><br>The quickest way to reach us is to open a short note on the project's public page on GitHub. You need a free GitHub account.<br><a class="cta" href="https://github.com/imthiyasyusuf1-dotcom/true-car-cost-uk/issues/new" rel="noopener">Send feedback</a></div>
-<p>Please do not include personal financial details in your message, because notes there are public.</p>
-<p>Advertisers and affiliate networks can also leave a message there and we will reply.</p>
+<form class="box cform" action="https://formsubmit.co/a86053f34787b30fb53795886dc44aad" method="POST">
+<strong>Send a message</strong>
+<input type="hidden" name="_subject" value="True Car Cost UK: new contact message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://imthiyasyusuf1-dotcom.github.io/true-car-cost-uk/contact/thanks/">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+<label for="cf-name">Your name</label>
+<input id="cf-name" type="text" name="name" required maxlength="100">
+<label for="cf-email">Your email (so we can reply)</label>
+<input id="cf-email" type="email" name="email" required maxlength="200">
+<label for="cf-topic">What is it about?</label>
+<select id="cf-topic" name="topic"><option>Mistake in a figure</option><option>Feature idea</option><option>Advertising or affiliate</option><option>Something else</option></select>
+<label for="cf-msg">Message</label>
+<textarea id="cf-msg" name="message" rows="6" required maxlength="5000"></textarea>
+<button class="cta" type="submit">Send message</button>
+</form>
+<p>Your message goes privately to the person who runs this site. It is not published anywhere. Please do not include personal financial details such as bank or card numbers.</p>
+<p>Advertisers and affiliate networks are welcome to use the same form and we will reply by email.</p>
 
 </main>
 <footer><nav><a href="../">Calculator</a><a href="../guides/">Guides</a><a href="../about/">About</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a><a href="../affiliate-disclosure/">Affiliate disclosure</a></nav>Rough guides, not financial advice. Check your own quotes and the official GOV.UK pages before you sign anything.</footer>

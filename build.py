@@ -7,6 +7,7 @@ BASE = "https://imthiyasyusuf1-dotcom.github.io/true-car-cost-uk/"
 TODAY = "2026-10-18"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = "https://github.com/imthiyasyusuf1-dotcom/true-car-cost-uk"
+FORM_ID = "a86053f34787b30fb53795886dc44aad"  # FormSubmit hashed endpoint (activated), forwards privately
 
 CSS = """
 :root{--bg:#0d0f12;--panel:#15181d;--panel2:#1b1f26;--line:#262b34;--text:#eef0f3;--muted:#9aa2af;--accent:#d8ff3e;--ink:#0d0f12}
@@ -40,6 +41,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .cards a span{color:var(--muted);font-size:14.5px}
 footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer nav{margin-bottom:10px}
+.cform label{display:block;font-size:14px;color:var(--muted);margin:14px 0 4px}
+.cform input,.cform select,.cform textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;padding:10px 12px}
+.cform button{border:0;cursor:pointer;font:inherit;font-weight:800;margin-top:16px}
 """
 
 NAV = [("Calculator", ""), ("Guides", "guides/"), ("About", "about/"), ("Contact", "contact/")]
@@ -341,10 +345,31 @@ page("about/", "About True Car Cost UK", "Who makes True Car Cost UK, why it exi
 page("contact/", "Contact | True Car Cost UK", "How to contact True Car Cost UK to report a mistake, suggest a feature or ask about the site.",
      f"""
 <p class="lede">Found a figure that looks wrong, or want something added to the calculator? We would like to hear about it.</p>
-<div class="box"><strong>Send a message</strong><br>The quickest way to reach us is to open a short note on the project's public page on GitHub. You need a free GitHub account.<br><a class="cta" href="{REPO}/issues/new" rel="noopener">Send feedback</a></div>
-<p>Please do not include personal financial details in your message, because notes there are public.</p>
-<p>Advertisers and affiliate networks can also leave a message there and we will reply.</p>
+<form class="box cform" action="https://formsubmit.co/{FORM_ID}" method="POST">
+<strong>Send a message</strong>
+<input type="hidden" name="_subject" value="True Car Cost UK: new contact message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="{BASE}contact/thanks/">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+<label for="cf-name">Your name</label>
+<input id="cf-name" type="text" name="name" required maxlength="100">
+<label for="cf-email">Your email (so we can reply)</label>
+<input id="cf-email" type="email" name="email" required maxlength="200">
+<label for="cf-topic">What is it about?</label>
+<select id="cf-topic" name="topic"><option>Mistake in a figure</option><option>Feature idea</option><option>Advertising or affiliate</option><option>Something else</option></select>
+<label for="cf-msg">Message</label>
+<textarea id="cf-msg" name="message" rows="6" required maxlength="5000"></textarea>
+<button class="cta" type="submit">Send message</button>
+</form>
+<p>Your message goes privately to the person who runs this site. It is not published anywhere. Please do not include personal financial details such as bank or card numbers.</p>
+<p>Advertisers and affiliate networks are welcome to use the same form and we will reply by email.</p>
 """, crumbs=[("Contact", "contact/")], h1="Contact")
+
+page("contact/thanks/", "Message sent | True Car Cost UK", "Thanks for contacting True Car Cost UK.",
+     """
+<p class="lede">Thanks, your message has been sent. We usually reply within a few days.</p>
+<p><a class="cta" href="{rel}">Back to the calculator</a></p>
+""", crumbs=[("Contact", "contact/"), ("Message sent", "contact/thanks/")], h1="Message sent")
 
 page("privacy/", "Privacy Policy | True Car Cost UK", "How True Car Cost UK handles your data: no accounts, no cookies, calculations stay in your browser, and an anonymous visit count.",
      """
@@ -355,10 +380,12 @@ page("privacy/", "Privacy Policy | True Car Cost UK", "How True Car Cost UK hand
 <p>We count visits and clicks on outbound links using a simple counter service (abacus.jasoncameron.dev). It records a number going up by one. No cookies are set and no personal profile is built. To count each browser only once a day, the site saves today's date in your browser's local storage. You can clear this at any time through your browser settings.</p>
 <h2>Hosting</h2>
 <p>The site is hosted on GitHub Pages. Like any web host, GitHub may log technical data such as IP addresses for security. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub privacy statement</a>.</p>
+<h2>Contact form</h2>
+<p>If you use the contact form, your name, email address and message are passed through FormSubmit (formsubmit.co) and delivered to our private inbox. We only use them to reply to you and delete them when they are no longer needed. See the <a href="https://formsubmit.co/privacy.pdf" rel="noopener">FormSubmit privacy policy</a>.</p>
 <h2>Links to other sites</h2>
 <p>We link to GOV.UK and other useful sites. Some links may in future be affiliate links (see our <a href="{rel}affiliate-disclosure/">affiliate disclosure</a>). When you click through, that site's own privacy policy and cookies apply, and an affiliate network may set a cookie so the site knows you came from us.</p>
 <h2>Your rights</h2>
-<p>We do not hold personal data about you, so there is normally nothing for us to access, correct or delete. If you have a question, <a href="{rel}contact/">contact us</a>. You can also contact the Information Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>.</p>
+<p>We do not hold personal data about you unless you send us a message, so there is normally nothing for us to access, correct or delete. If you have a question, <a href="{rel}contact/">contact us</a>. You can also contact the Information Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>.</p>
 <p>Last updated 18 October 2026.</p>
 """, crumbs=[("Privacy", "privacy/")], h1="Privacy policy")
 
