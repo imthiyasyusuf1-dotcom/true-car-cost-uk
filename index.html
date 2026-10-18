@@ -103,6 +103,10 @@ input:focus,select:focus{border-color:var(--accent)}
 .faq summary:after{content:"+";float:right;color:var(--accent)}
 .faq details[open] summary:after{content:"\2212"}
 .faq p{color:var(--muted);margin-top:8px;font-size:14px}
+.topnav,.footnav{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+.topnav a,.footnav a{color:var(--muted);text-decoration:none}.topnav a:hover,.footnav a:hover{color:var(--text)}
+.footnav{justify-content:center;margin-bottom:10px}
+.guides ul{padding-left:20px}.guides li{margin:8px 0}.guides a{color:var(--accent)}
 footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--accent);color:var(--accent-ink);font-weight:800;padding:10px 16px;border-radius:99px;transition:transform .25s}
 .toast.show{transform:translateX(-50%) translateY(0)}
@@ -112,7 +116,7 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
 <div class="wrap">
   <header>
     <div class="logo"><i>£</i>True Car Cost</div>
-    <div class="tag">Free · UK · No sign up</div>
+    <nav class="topnav"><a href="guides/">Guides</a><a href="about/">About</a></nav>
   </header>
 
   <h1>The price on the advert is <em>not</em> what the car costs you.</h1>
@@ -213,7 +217,18 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
     <details><summary>Is my data saved anywhere?</summary><p>No. Everything runs in your browser. The share link just stores the numbers in the address so you can send it to someone. We only keep an anonymous tally of visits and link clicks, with no cookies and nothing personal.</p></details>
   </div>
 
-  <footer>Rough guide, not financial advice. Figures are estimates based on what you enter.<br>Made in London.</footer>
+  <div class="card guides">
+    <h2>Guides to UK car costs</h2>
+    <ul>
+      <li><a href="guides/true-cost-of-running-a-car-uk/">How much does it really cost to run a car in the UK?</a></li>
+      <li><a href="guides/pcp-vs-hp/">PCP vs HP: which car finance works out cheaper?</a></li>
+      <li><a href="guides/car-cost-per-mile/">How to work out your car's real cost per mile</a></li>
+      <li><a href="guides/cut-car-insurance-cost/">How to cut your car insurance cost</a></li>
+      <li><a href="guides/used-car-checks-before-buying/">Used car checks to do before you buy</a></li>
+    </ul>
+  </div>
+
+  <footer><nav class="footnav"><a href="guides/">Guides</a><a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a><a href="affiliate-disclosure/">Affiliate disclosure</a></nav>Rough guide, not financial advice. Figures are estimates based on what you enter.<br>Made in London.</footer>
 </div>
 <div class="toast" id="toast">Link copied</div>
 
