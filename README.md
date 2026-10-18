@@ -20,4 +20,5 @@ Content pages (guides, about, contact, privacy, affiliate disclosure) and sitema
 - IndexNow (Bing, Yandex): key file 32deb3ecdd56e6ab69878d7b864d622c.txt. After adding pages, run build.py then POST urls.txt to https://api.indexnow.org/indexnow with that key.
 
 ## Awin
-Publisher ID 3124432. Profile 100% complete: publisher name True Car Cost UK, description, logo, site in Promotional Spaces, promotion type Content > Editorial Content (primary). Applied to Veygo, Rooster, MoneySupermarket, Go Compare, MotorEasy, Quick Car Finance on 14 Oct (pending).
+Publisher ID 3124432. Profile 100% complete: publisher name True Car Cost UK, description, logo, site in Promotional Spaces, promotion type Content > Editorial Content (primary).
+Pending advertiser applications (checked 18 Oct): Quick Car Finance, MotorEasy Car Warranty, Veygo UK, MoneySupermarket Insurance, QDOS Breakdown, The AA UK Breakdown, Rooster Car Insurance, Go Compare Car Insurance, RAC. Joined: none yet.
